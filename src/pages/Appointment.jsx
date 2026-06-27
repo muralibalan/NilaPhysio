@@ -53,7 +53,7 @@ function Appointment() {
     setOpen(true);
 
     // WhatsApp Message Integration
-    const whatsappNumber = "+919842492982";
+    const whatsappNumber = "+919842492981";
     const message = `*New Appointment Confirmed* 🗓️\n\n` +
                     `*Token:* ${token}\n` +
                     `*Name:* ${updatedData.name}\n` +

@@ -286,7 +286,7 @@ function Footer() {
       {/* WhatsApp Floating Button with Blink/Pulse Animation */}
       <IconButton
         component="a"
-        href="https://wa.me/919842492982"
+        href="https://wa.me/919842492981"
         target="_blank"
         rel="noopener noreferrer"
         sx={{
