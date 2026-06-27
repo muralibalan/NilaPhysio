@@ -1,1 +1,348 @@
 find . -name "._*" -delete
+
+
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Modal,
+  Paper,
+  MenuItem,
+  Select,
+  FormControl,
+} from "@mui/material";
+
+import PersonIcon from "@mui/icons-material/Person";
+import PhoneIcon from "@mui/icons-material/Phone";
+import EmailIcon from "@mui/icons-material/Email";
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+
+function Appointment() {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState(null);
+
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    doctor: "",
+    service: "",
+    date: "",
+    time: "",
+  });
+
+  const doctors = [ "Dr. Sarah Johnson", "Dr. Michael Lee", "Dr. Emily Carter","Dr. David Brown","Dr. Olivia White",
+    "Dr. James Wilson",
+  ];
+
+  const services = ["Orthopedic Physiotherapy", "Sports Injury Rehabilitation", "Neurological Physiotherapy", 
+    "Post-Surgical Rehabilitation","Pain Management Therapy","Pediatric Physiotherapy","Geriatric Physiotherapy"
+  ];
+
+  const times = ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "02:00 PM", "04:00 PM"];
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleConfirm = () => {
+    const token = "APT-" + Math.floor(10000 + Math.random() * 90000);
+
+    setData({ ...form, token });
+    setOpen(true);
+  };
+
+  return (
+    <Box
+      sx={{
+        minHeight: "100vh",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#eef3ff",
+        px: { xs: 2, sm: 3 },
+        py: { xs: 3, sm: 4 },
+        boxSizing: "border-box",
+      }}
+    >
+      <Box
+        sx={{
+          width: { xs: "100%", sm: "95%", md: "70%", lg: "55%" },
+        }}
+      >
+        {/* TITLE */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+            flexWrap: "wrap",
+            mt: { xs: 2, md: 5 },
+            mb: 3,
+            textAlign: "center",
+          }}
+        >
+          <LocalHospitalIcon sx={{ color: "#3b82f6", fontSize: 28 }} />
+
+          <Typography
+            sx={{
+              fontSize: { xs: 24, sm: 30, md: 40 },
+              fontWeight: "bold",
+            }}
+          >
+            Appointment Booking
+          </Typography>
+        </Box>
+
+        {/* FORM CARD */}
+        <Box
+          sx={{
+            borderRadius: { xs: "24px", md: "42px" },
+            p: { xs: 2, sm: 3, md: "55px" },
+            mx: { xs: 0, sm: 2, md: 5 },
+
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,0.28), rgba(219,234,254,0.22))",
+
+            backdropFilter: "blur(28px)",
+            WebkitBackdropFilter: "blur(28px)",
+
+            border: "5px solid rgba(147,197,253,0.25)",
+
+            boxShadow: `
+              0 20px 45px rgba(59,130,246,0.10),
+              0 0 35px rgba(96,165,250,0.10),
+              inset 0 1px 0 rgba(255,255,255,0.55),
+              inset 0 -8px 20px rgba(147,197,253,0.08)
+            `,
+
+            position: "relative",
+            overflow: "hidden",
+            zIndex: 2,
+          }}
+        >
+          {/* NAME + PHONE */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              gap: 2,
+              mb: 2,
+            }}
+          >
+            <Box sx={{ flex: 1 }}>
+              <Typography sx={{ fontSize: 14, mb: 0.7, fontWeight: 500 }}>
+                Patient Name
+              </Typography>
+
+              <TextField
+                fullWidth
+                placeholder="Enter Name"
+                name="name"
+                onChange={handleChange}
+                sx={{
+                  background: "#f5f7ff",
+                  "& .MuiInputBase-root": {
+                    height: "42px",
+                    borderRadius: "10px",
+                  },
+                }}
+              />
+            </Box>
+
+            <Box sx={{ flex: 1 }}>
+              <Typography sx={{ fontSize: 14, mb: 0.7, fontWeight: 500 }}>
+                Phone Number
+              </Typography>
+
+              <TextField
+                fullWidth
+                placeholder="Enter Phone"
+                name="phone"
+                onChange={handleChange}
+                sx={{
+                  background: "#f5f7ff",
+                  "& .MuiInputBase-root": {
+                    height: "42px",
+                    borderRadius: "10px",
+                  },
+                }}
+              />
+            </Box>
+          </Box>
+
+          {/* EMAIL */}
+          <Box sx={{ mb: 2 }}>
+            <Typography sx={{ fontSize: 14, mb: 0.7, fontWeight: 500 }}>
+              Email Address
+            </Typography>
+
+            <TextField
+              fullWidth
+              placeholder="Enter Email"
+              name="email"
+              onChange={handleChange}
+              sx={{
+                background: "#f5f7ff",
+                "& .MuiInputBase-root": {
+                  height: "42px",
+                  borderRadius: "10px",
+                },
+              }}
+            />
+          </Box>
+
+          {/* DOCTOR + SERVICE */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              gap: 2,
+              mb: 2,
+            }}
+          >
+            <FormControl fullWidth>
+              <Typography sx={{ fontSize: 14, mb: 0.7, fontWeight: 500 }}>
+                Select Doctor
+              </Typography>
+
+              <Select name="doctor" value={form.doctor} onChange={handleChange}>
+                <MenuItem value="">Select Doctor</MenuItem>
+                {doctors.map((d, i) => (
+                  <MenuItem key={i} value={d}>
+                    {d}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl fullWidth>
+              <Typography sx={{ fontSize: 14, mb: 0.7, fontWeight: 500 }}>
+                Select Service
+              </Typography>
+
+              <Select name="service" value={form.service} onChange={handleChange}>
+                <MenuItem value="">Select Service</MenuItem>
+                {services.map((s, i) => (
+                  <MenuItem key={i} value={s}>
+                    {s}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
+
+          {/* DATE + TIME */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              gap: 2,
+              mb: 2,
+            }}
+          >
+            <TextField
+              type="date"
+              fullWidth
+              name="date"
+              onChange={handleChange}
+              sx={{
+                background: "#f5f7ff",
+                "& .MuiInputBase-root": {
+                  height: "42px",
+                  borderRadius: "10px",
+                },
+              }}
+            />
+
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: { xs: "repeat(2,1fr)", sm: "repeat(3,1fr)" },
+                gap: 1,
+              }}
+            >
+              {times.map((t, i) => (
+                <Box
+                  key={i}
+                  onClick={() => setForm({ ...form, time: t })}
+                  sx={{
+                    textAlign: "center",
+                    p: 1,
+                    borderRadius: 2,
+                    cursor: "pointer",
+                    background: form.time === t ? "#2ecc71" : "#f1f5ff",
+                    color: form.time === t ? "#fff" : "#000",
+                  }}
+                >
+                  {t}
+                </Box>
+              ))}
+            </Box>
+          </Box>
+
+          {/* BUTTON */}
+          <Button
+            fullWidth
+            onClick={handleConfirm}
+            sx={{
+              background: "#3b82f6",
+              color: "#fff",
+              py: 1.2,
+              borderRadius: "10px",
+              fontWeight: "bold",
+              "&:hover": { background: "#2563eb" },
+            }}
+          >
+            Confirm Appointment
+          </Button>
+        </Box>
+      </Box>
+
+      {/* MODAL */}
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Paper
+          sx={{
+            width: { xs: "80%", sm: 430 },
+            p: 2,
+            borderRadius: 4,
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            
+          }}
+        >
+          <Typography sx={{ fontSize: 22, fontWeight: "bold", color: "#2ecc71", textAlign: "center" }}>
+            Appointment Confirmed
+          </Typography>
+
+          <Box sx={{ mt: 2 }}>
+            <Typography>Token: {data?.token}</Typography>
+            <Typography>Name: {data?.name}</Typography>
+            <Typography>Phone: {data?.phone}</Typography>
+            <Typography>Email: {data?.email}</Typography>
+            <Typography>Doctor: {data?.doctor}</Typography>
+            <Typography>Service: {data?.service}</Typography>
+            <Typography>Date: {data?.date}</Typography>
+            <Typography>Time: {data?.time}</Typography>
+          </Box>
+
+          <Button fullWidth sx={{ mt: 2 }} onClick={() => setOpen(false)}>
+            Close
+          </Button>
+        </Paper>
+      </Modal>
+    </Box>
+  );
+}
+
+export default Appointment;

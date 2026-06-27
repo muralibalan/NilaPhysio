@@ -145,7 +145,7 @@ function Contact() {
                 },
               }}
             >
-              Our experienced physiotherapy specialists are here to help you recover 
+              Our experienced physiotherapy specialists are here to help you recover
               from injuries, manage chronic pain, and regain your active physical lifestyle.
             </Typography>
 
@@ -182,7 +182,7 @@ function Contact() {
                       color: "rgba(255,255,255,0.72)",
                     }}
                   >
-                    +91 98765 43210
+                    +91 7010936234
                   </Typography>
                 </Box>
               </Box>
@@ -213,7 +213,7 @@ function Contact() {
                       color: "rgba(255,255,255,0.72)",
                     }}
                   >
-                    dentora@gmail.com
+                    prejen8283@gmail.com
                   </Typography>
                 </Box>
               </Box>
@@ -244,7 +244,11 @@ function Contact() {
                       color: "rgba(255,255,255,0.72)",
                     }}
                   >
-                    Madurai, Tamil Nadu
+                    58/32 Mahadhana street<br/>
+                    opposite abirami mahal<br/>
+                    near Arun scan centre<br/>
+                    Mayiladuthurai-609 001
+
                   </Typography>
                 </Box>
               </Box>
@@ -309,9 +313,9 @@ function Contact() {
 
             <Box
               component="form"
-              action="https://formsubmit.co/abinayaabi45668@gmail.com"
+              action="https://formsubmit.co/prejen8283@gmail.com"
               method="POST"
-             
+
             >
               {/* Added native name tracking parameters to ensure backend form validation catches data fields */}
               <TextField

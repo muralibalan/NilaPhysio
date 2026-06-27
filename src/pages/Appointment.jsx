@@ -11,13 +11,6 @@ import {
   FormControl,
 } from "@mui/material";
 
-import PersonIcon from "@mui/icons-material/Person";
-import PhoneIcon from "@mui/icons-material/Phone";
-import EmailIcon from "@mui/icons-material/Email";
-import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 
 function Appointment() {
@@ -27,22 +20,26 @@ function Appointment() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    email: "",
+    area: "",
     doctor: "",
     service: "",
     date: "",
     time: "",
   });
 
-  const doctors = [ "Dr. Sarah Johnson", "Dr. Michael Lee", "Dr. Emily Carter","Dr. David Brown","Dr. Olivia White",
-    "Dr. James Wilson",
+  const doctors = ["Dr. PremKumar", "Dr. Shalini"];
+
+  const services = [
+    "Orthopedic Physiotherapy",
+    "Sports Injury Rehabilitation",
+    "Neurological Physiotherapy",
+    "Post-Surgical Rehabilitation",
+    "Pain Management Therapy",
+    "Pediatric Physiotherapy",
+    "Geriatric Physiotherapy",
   ];
 
-  const services = ["Orthopedic Physiotherapy", "Sports Injury Rehabilitation", "Neurological Physiotherapy", 
-    "Post-Surgical Rehabilitation","Pain Management Therapy","Pediatric Physiotherapy","Geriatric Physiotherapy"
-  ];
-
-  const times = ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "02:00 PM", "04:00 PM"];
+  const timeSlots = ["Morning: 10AM - 2PM", "Evening: 05PM - 09PM"];
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -50,9 +47,28 @@ function Appointment() {
 
   const handleConfirm = () => {
     const token = "APT-" + Math.floor(10000 + Math.random() * 90000);
+    const updatedData = { ...form, token };
 
-    setData({ ...form, token });
+    setData(updatedData);
     setOpen(true);
+
+    // WhatsApp Message Integration
+    const whatsappNumber = "+919842492982";
+    const message = `*New Appointment Confirmed* 🗓️\n\n` +
+                    `*Token:* ${token}\n` +
+                    `*Name:* ${updatedData.name}\n` +
+                    `*Phone:* ${updatedData.phone}\n` +
+                    `*Area:* ${updatedData.area}\n` +
+                    `*Doctor:* ${updatedData.doctor}\n` +
+                    `*Service:* ${updatedData.service}\n` +
+                    `*Date:* ${updatedData.date}\n` +
+                    `*Time Slot:* ${updatedData.time}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+    
+    // Opens WhatsApp in a new tab
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
@@ -144,6 +160,7 @@ function Appointment() {
                 fullWidth
                 placeholder="Enter Name"
                 name="name"
+                value={form.name}
                 onChange={handleChange}
                 sx={{
                   background: "#f5f7ff",
@@ -164,6 +181,7 @@ function Appointment() {
                 fullWidth
                 placeholder="Enter Phone"
                 name="phone"
+                value={form.phone}
                 onChange={handleChange}
                 sx={{
                   background: "#f5f7ff",
@@ -176,16 +194,17 @@ function Appointment() {
             </Box>
           </Box>
 
-          {/* EMAIL */}
+          {/* AREA */}
           <Box sx={{ mb: 2 }}>
             <Typography sx={{ fontSize: 14, mb: 0.7, fontWeight: 500 }}>
-              Email Address
+              Area
             </Typography>
 
             <TextField
               fullWidth
-              placeholder="Enter Email"
-              name="email"
+              placeholder="Enter Area"
+              name="area"
+              value={form.area}
               onChange={handleChange}
               sx={{
                 background: "#f5f7ff",
@@ -246,44 +265,39 @@ function Appointment() {
               mb: 2,
             }}
           >
-            <TextField
-              type="date"
-              fullWidth
-              name="date"
-              onChange={handleChange}
-              sx={{
-                background: "#f5f7ff",
-                "& .MuiInputBase-root": {
-                  height: "42px",
-                  borderRadius: "10px",
-                },
-              }}
-            />
-
-            <Box
-              sx={{
-                display: "grid",
-                gridTemplateColumns: { xs: "repeat(2,1fr)", sm: "repeat(3,1fr)" },
-                gap: 1,
-              }}
-            >
-              {times.map((t, i) => (
-                <Box
-                  key={i}
-                  onClick={() => setForm({ ...form, time: t })}
-                  sx={{
-                    textAlign: "center",
-                    p: 1,
-                    borderRadius: 2,
-                    cursor: "pointer",
-                    background: form.time === t ? "#2ecc71" : "#f1f5ff",
-                    color: form.time === t ? "#fff" : "#000",
-                  }}
-                >
-                  {t}
-                </Box>
-              ))}
+            <Box sx={{ flex: 1 }}>
+              <Typography sx={{ fontSize: 14, mb: 0.7, fontWeight: 500 }}>
+                Select Date
+              </Typography>
+              <TextField
+                type="date"
+                fullWidth
+                name="date"
+                value={form.date}
+                onChange={handleChange}
+                sx={{
+                  background: "#f5f7ff",
+                  "& .MuiInputBase-root": {
+                    height: "42px",
+                    borderRadius: "10px",
+                  },
+                }}
+              />
             </Box>
+
+            <FormControl fullWidth>
+              <Typography sx={{ fontSize: 14, mb: 0.7, fontWeight: 500 }}>
+                Select Time Slot
+              </Typography>
+              <Select name="time" value={form.time} onChange={handleChange}>
+                <MenuItem value="">Select Time</MenuItem>
+                {timeSlots.map((t, i) => (
+                  <MenuItem key={i} value={t}>
+                    {t}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
 
           {/* BUTTON */}
@@ -315,22 +329,28 @@ function Appointment() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            
           }}
         >
-          <Typography sx={{ fontSize: 22, fontWeight: "bold", color: "#2ecc71", textAlign: "center" }}>
+          <Typography
+            sx={{
+              fontSize: 22,
+              fontWeight: "bold",
+              color: "#2ecc71",
+              textAlign: "center",
+            }}
+          >
             Appointment Confirmed
           </Typography>
 
           <Box sx={{ mt: 2 }}>
-            <Typography>Token: {data?.token}</Typography>
-            <Typography>Name: {data?.name}</Typography>
-            <Typography>Phone: {data?.phone}</Typography>
-            <Typography>Email: {data?.email}</Typography>
-            <Typography>Doctor: {data?.doctor}</Typography>
-            <Typography>Service: {data?.service}</Typography>
-            <Typography>Date: {data?.date}</Typography>
-            <Typography>Time: {data?.time}</Typography>
+            <Typography><b>Token:</b> {data?.token}</Typography>
+            <Typography><b>Name:</b> {data?.name}</Typography>
+            <Typography><b>Phone:</b> {data?.phone}</Typography>
+            <Typography><b>Area:</b> {data?.area}</Typography>
+            <Typography><b>Doctor:</b> {data?.doctor}</Typography>
+            <Typography><b>Service:</b> {data?.service}</Typography>
+            <Typography><b>Date:</b> {data?.date}</Typography>
+            <Typography><b>Time:</b> {data?.time}</Typography>
           </Box>
 
           <Button fullWidth sx={{ mt: 2 }} onClick={() => setOpen(false)}>

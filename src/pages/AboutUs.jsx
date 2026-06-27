@@ -9,9 +9,10 @@ import {
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import Groups2OutlinedIcon from "@mui/icons-material/Groups2Outlined";
+
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import MedicalServicesOutlinedIcon from "@mui/icons-material/MedicalServicesOutlined";
+import WorkspacePremiumOutlinedIcon from "@mui/icons-material/WorkspacePremiumOutlined"
 
 // திசைகளுக்கு ஏற்ப (Left, Right, Bottom) கன்டென்ட்களை அனிமேட் செய்யும் ஸ்மார்ட் காம்போனென்ட்
 function ScrollReveal({ children, delay = 0, direction = "bottom" }) {
@@ -74,7 +75,7 @@ function AboutUs() {
           background: "linear-gradient(180deg, #ffffff 0%, #eef8ff 100%)",
           pt: { xs: 10, md: 12 },
           pb: { xs: 8, md: 10 },
-          overflow: "hidden", 
+          overflow: "hidden",
         }}
       >
         <Container
@@ -219,7 +220,7 @@ function AboutUs() {
                   WHO WE ARE
                 </Typography>
               </ScrollReveal>
-              
+
               <ScrollReveal direction="bottom" delay={0.2}>
                 <Typography
                   sx={{
@@ -359,7 +360,11 @@ function AboutUs() {
             }}
           >
             {[
-              { icon: <Groups2OutlinedIcon sx={{ fontSize: 36 }} />, value: "10+", label: "Expert Therapists" },
+              {
+                icon: <WorkspacePremiumOutlinedIcon sx={{ fontSize: 36 }} />,
+                value: "19+",
+                label: "Years of Experience"
+              },
               { icon: <FavoriteBorderOutlinedIcon sx={{ fontSize: 36 }} />, value: "500+", label: "Recovered Patients" },
               { icon: <AccessTimeOutlinedIcon sx={{ fontSize: 36 }} />, value: "24/7", label: "Emergency Support" },
               { icon: <MedicalServicesOutlinedIcon sx={{ fontSize: 36 }} />, value: "Modern", label: "Rehab Equipment" },
