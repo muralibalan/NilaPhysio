@@ -95,7 +95,7 @@ function Footer() {
         >
           <Box
             component="img"
-            src="360_F_269645659_AoyvKF9SAh7OLxbdNOfoo1dzS3byqWZr-removebg-preview.png"
+            src="nilalogo.png"
             alt="Physio Clinic Logo"
             sx={{
               width: "100%",

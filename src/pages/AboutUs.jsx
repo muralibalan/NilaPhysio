@@ -1,775 +1,419 @@
-import React from "react";
-
+import React, { useEffect, useState, useRef } from "react";
 import {
   Box,
   Typography,
-  Grid,
-  Button,
+  Stack,
+  Container,
 } from "@mui/material";
 
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import Groups2OutlinedIcon from "@mui/icons-material/Groups2Outlined";
+import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
+import MedicalServicesOutlinedIcon from "@mui/icons-material/MedicalServicesOutlined";
 
-import { useNavigate } from "react-router-dom";
+// திசைகளுக்கு ஏற்ப (Left, Right, Bottom) கன்டென்ட்களை அனிமேட் செய்யும் ஸ்மார்ட் காம்போனென்ட்
+function ScrollReveal({ children, delay = 0, direction = "bottom" }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef(null);
 
-function AboutUs() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
 
-  const navigate = useNavigate();
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
 
-  // Content updated to Physiotherapy themes
-  const features = [
-    "Advanced Rehabilitation Technology",
-    "Experienced Physiotherapy Specialists",
-    "Compassionate Patient Recovery Care",
-    "Emergency Musculoskeletal Support",
-  ];
+    return () => {
+      if (currentElement) observer.unobserve(currentElement);
+    };
+  }, []);
 
-  // Content updated to Physiotherapy themes
-  const stats = [
-    {
-      number: "10+",
-      title: "Expert Therapists",
-    },
-
-    {
-      number: "5000+",
-      title: "Recovered Patients",
-    },
-
-    {
-      number: "24/7",
-      title: "Emergency Support",
-    },
-
-    {
-      number: "Modern",
-      title: "Rehab Equipment",
-    },
-  ];
+  // திசையை தீர்மானிக்கும் லாஜிக்
+  const getTranslateValue = () => {
+    if (isVisible) return "translate(0, 0)";
+    if (direction === "left") return "translateX(-60px)";
+    if (direction === "right") return "translateX(60px)";
+    return "translateY(60px)"; // default bottom
+  };
 
   return (
-
     <Box
+      ref={elementRef}
       sx={{
-
-        width: "100%",
-
-        minHeight: "100vh",
-
-        overflow: "hidden",
-
-        position: "relative",
-
-        background:
-          "linear-gradient(to bottom,#f8fbff,#edf6ff)",
-
-        py: {
-          xs: "90px",
-          md: "120px",
-        },
+        opacity: isVisible ? 1 : 0,
+        transform: getTranslateValue(),
+        transition: `opacity 0.8s ease, transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) ${delay}s`,
       }}
     >
+      {children}
+    </Box>
+  );
+}
 
-      {/* ================= WATER EFFECT ================= */}
-
+function AboutUs() {
+  return (
+    <>
+      {/* ================= HERO SECTION ================= */}
       <Box
         sx={{
-
-          position: "absolute",
-
-          top: "-100px",
-
-          left: "-100px",
-
-          width: "280px",
-
-          height: "280px",
-
-          borderRadius: "50%",
-
-          background:
-            "rgba(59,130,246,0.15)",
-
-          filter:
-            "blur(120px)",
-
-          animation:
-            "waterMove 8s ease-in-out infinite",
-        }}
-      />
-
-      <Box
-        sx={{
-
-          position: "absolute",
-
-          bottom: "-120px",
-
-          right: "-100px",
-
-          width: "320px",
-
-          height: "320px",
-
-          borderRadius: "50%",
-
-          background:
-            "rgba(96,165,250,0.15)",
-
-          filter:
-            "blur(130px)",
-
-          animation:
-            "waterMove2 10s ease-in-out infinite",
-        }}
-      />
-
-      {/* ================= ANIMATION ================= */}
-
-      <Box
-        sx={{
-
-          "@keyframes waterMove": {
-
-            "0%": {
-              transform: "translateY(0px)"
-            },
-
-            "50%": {
-              transform: "translateY(40px)"
-            },
-
-            "100%": {
-              transform: "translateY(0px)"
-            }
-          },
-
-          "@keyframes waterMove2": {
-
-            "0%": {
-              transform: "translateX(0px)"
-            },
-
-            "50%": {
-              transform: "translateX(-40px)"
-            },
-
-            "100%": {
-              transform: "translateX(0px)"
-            }
-          },
-
-          "@keyframes fadeUp": {
-
-            from: {
-              opacity: 0,
-              transform: "translateY(40px)"
-            },
-
-            to: {
-              opacity: 1,
-              transform: "translateY(0px)"
-            }
-          },
-
-          "@keyframes fadeRight": {
-
-            from: {
-              opacity: 0,
-              transform: "translateX(40px)"
-            },
-
-            to: {
-              opacity: 1,
-              transform: "translateX(0px)"
-            }
-          },
-
-          "@keyframes zoomIn": {
-
-            from: {
-              opacity: 0,
-              transform: "scale(0.9)"
-            },
-
-            to: {
-              opacity: 1,
-              transform: "scale(1)"
-            }
-          }
-        }}
-      />
-
-      {/* ================= ABOUT TITLE ================= */}
-
-      <Box
-        sx={{
-
-          textAlign: "center",
-
-          mb: {
-            xs: 5,
-            md: 8,
-          },
-
-          animation:
-            "fadeUp 1s ease",
+          width: "100%",
+          background: "linear-gradient(180deg, #ffffff 0%, #eef8ff 100%)",
+          pt: { xs: 10, md: 12 },
+          pb: { xs: 8, md: 10 },
+          overflow: "hidden", 
         }}
       >
-
-        <Typography
-          sx={{
-
-            color: "#2563eb",
-
-            fontWeight: "bold",
-
-            letterSpacing: "3px",
-
-            fontSize: {
-              xs: "15px",
-              md: "40px",
-            },
-
-            mb: 2,
-          }}
+        <Container
+          maxWidth={false}
+          sx={{ maxWidth: "1400px", mx: "auto", px: { xs: 2, sm: 3, md: 5, lg: 6 } }}
         >
-          ABOUT US
-        </Typography>
-
-        <Typography
-          sx={{
-
-            fontWeight: "bold",
-
-            color: "#0f172a",
-
-            lineHeight: 1.1,
-
-            fontSize: {
-              xs: "25px",
-              sm: "42px",
-              md: "55px",
-                },
-              }}
-            >
-              Restoring Mobility
-              <br />
-              & Healthy Living
-            </Typography>
-
-      </Box>
-
-      {/* ================= IMAGE + CONTENT ================= */}
-
-      <Grid
-        container
-
-        spacing={{
-          xs: 5,
-          md: 7,
-        }}
-
-        alignItems="center"
-      >
-
-        {/* ================= LEFT IMAGE ================= */}
-
-        <Grid item xs={12} md={7}>
-
+          {/* Hero Flex Row */}
           <Box
             sx={{
-              width: {xs:"93%",md:"100%"},
-
-              maxWidth: "630px",
-
-              mx: "auto",
-
-              position: "relative",
-
-              overflow: "hidden",
-
-              borderRadius: {
-                xs: "24px",
-                md: "40px",
-              },
-
-              height: {
-                xs: "300px",
-                sm: "380px",
-                md: "520px",
-              },
-
-              ml:{xs:1,md:10},
-
-              boxShadow:
-                "0 25px 60px rgba(59,130,246,0.18)",
-
-              animation:
-                "zoomIn 1.2s ease",
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: { xs: 4, md: 6 },
             }}
           >
+            {/* LEFT CONTENT (Left to Right Animation) */}
+            <Box sx={{ flex: 1, minWidth: 0 }}>
+              <Stack spacing={3}>
+                <ScrollReveal direction="left" delay={0.1}>
+                  <Typography sx={{ color: "#06b6d4", fontWeight: 700, fontSize: "15px", letterSpacing: "0.8px" }}>
+                    ABOUT NILA SPINE & JOINT CLINIC
+                  </Typography>
+                </ScrollReveal>
 
-            {/* IMAGE SOURCE PATH REMAINS SAME FOR ASSET INTEGRITY */}
-
-            <Box
-              component="img"
-
-              src="group Doctors.jpg"
-
-              alt="Physiotherapy Team"
-
-              sx={{
-
-                width: "100%",
-
-                height: "100%",
-
-                objectFit: "cover",
-
-                objectPosition: "center",
-
-                transition: "0.6s",
-
-                "&:hover": {
-
-                  transform: "scale(1.04)",
-                }
-              }}
-            />
-
-            {/* OVERLAY */}
-
-            <Box
-              sx={{
-
-                position: "absolute",
-
-                inset: 0,
-
-                background:
-                  "linear-gradient(to top, rgba(15,23,42,0.28), transparent)",
-              }}
-            />
-
-            {/* IMAGE TEXT */}
-
-            <Box
-              sx={{
-
-                position: "absolute",
-
-                left: {
-                  xs: 18,
-                  md: 40,
-                },
-
-                bottom: {
-                  xs: 18,
-                  md: 40,
-                },
-
-                color: "#fff",
-
-                animation:
-                  "fadeUp 1.5s ease",
-              }}
-            >
-
-              <Typography
-                sx={{
-
-                  letterSpacing: "3px",
-
-                  fontWeight: 600,
-
-                  mb: 1,
-
-                  fontSize: {
-                    xs: "12px",
-                    md: "16px",
-                  },
-                }}
-              >
-                WELCOME TO
-              </Typography>
-
-              <Typography
-                sx={{
-
-                  fontWeight: "bold",
-
-                  lineHeight: 1.05,
-
-                  fontSize: {
-                    xs: "20px",
-                    sm: "46px",
-                    md: "50px",
-                  },
-                }}
-              >
-               
-                PHYSIO
-                <br />
-                CLINIC
-              </Typography>
-
-            </Box>
-
-          </Box>
-
-        </Grid>
-
-        {/* ================= RIGHT CONTENT ================= */}
-
-        <Grid item xs={12} md={5}>
-
-          <Box
-            sx={{
-              animation:
-                "fadeRight 1.2s ease",
-              mr:{xs:3,md:5},
-              ml:{xs:3,md:5},
-
-              maxWidth:600
-            }}
-          >
-
-            <Typography
-              sx={{
-
-                color: "#475569",
-
-                lineHeight: {
-                  xs: "30px",
-                  md: "36px",
-                },
-
-                fontSize: {
-                  xs: "15px",
-                  md: "17px",
-                },
-
-                mb: 4,
-              }}
-            >
-              At Abi Physiotherapy Clinic, we provide modern
-              rehabilitation care with advanced technology and
-              experienced specialists. Our mission is to
-              restore pain-free movement, active strength in a safe
-              and comfortable environment.
-
-              <br /><br />
-
-              We specialize in orthopedic rehab,
-              sports therapy, post-surgical recovery, joint treatments 
-              and neurological rehabilitation sessions with personalized attention
-              for every patient.
-            </Typography>
-
-            {/* FEATURES */}
-
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 2.2,
-                mb: 5,
-                
-              }}
-            >
-
-              {features.map((item, index) => (
-
-                <Box
-                  key={index}
-
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 1.5,
-                  }}
-                >
-
-                  <KeyboardDoubleArrowRightIcon
-                    sx={{
-                      color: "#2563eb",
-                    }}
-                  />
-
+                <ScrollReveal direction="left" delay={0.2}>
                   <Typography
                     sx={{
-
-                      fontWeight: 600,
-
-                      color: "#334155",
-
-                      fontSize: {
-                        xs: "14px",
-                        md: "16px",
-                      },
+                      fontWeight: 800,
+                      lineHeight: 1.15,
+                      color: "#111827",
+                      fontSize: { xs: "32px", sm: "42px", md: "52px", lg: "60px" },
                     }}
                   >
-                    {item}
+                    Restoring Mobility
+                    <br />
+                    <Box component="span" sx={{ color: "#2563eb" }}>
+                      & Healthy Living
+                    </Box>
                   </Typography>
+                </ScrollReveal>
 
+                <ScrollReveal direction="left" delay={0.3}>
+                  <Box sx={{ width: 70, height: 4, bgcolor: "#06b6d4", borderRadius: 20 }} />
+                </ScrollReveal>
+
+                <ScrollReveal direction="left" delay={0.4}>
+                  <Typography sx={{ color: "#475569", maxWidth: 520, lineHeight: 1.9, fontSize: { xs: "15px", md: "16px" } }}>
+                    We are committed to providing advanced physiotherapy treatments
+                    with personalized care to help you move better, feel better, and
+                    live a pain-free life.
+                  </Typography>
+                </ScrollReveal>
+
+                {/* Feature Icons */}
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
+                  {[
+                    { icon: <PeopleAltOutlinedIcon />, label1: "Expert", label2: "Therapists" },
+                    { icon: <VerifiedUserOutlinedIcon />, label1: "Advanced", label2: "Care" },
+                    { icon: <FavoriteBorderOutlinedIcon />, label1: "Patient", label2: "Focused" },
+                  ].map((item, i) => (
+                    <ScrollReveal key={i} direction="left" delay={0.5 + i * 0.1}>
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                        <Box
+                          sx={{
+                            width: 50, height: 50, borderRadius: "50%",
+                            border: "2px solid #22c7e8",
+                            display: "flex", justifyContent: "center", alignItems: "center",
+                            color: "#22c7e8", flexShrink: 0,
+                          }}
+                        >
+                          {item.icon}
+                        </Box>
+                        <Typography fontWeight={600} sx={{ lineHeight: 1.3 }}>
+                          {item.label1}<br />{item.label2}
+                        </Typography>
+                      </Box>
+                    </ScrollReveal>
+                  ))}
                 </Box>
-
-              ))}
-
+              </Stack>
             </Box>
 
-            {/* BUTTON */}
-
-            <Button
-              variant="contained"
-
-              endIcon={<ArrowForwardIcon />}
-
-              onClick={() => navigate("/services")}
-
-              sx={{
-
-                px: 5,
-
-                py: 1.5,
-
-                borderRadius: "40px",
-
-                textTransform: "none",
-
-                fontWeight: "bold",
-
-                fontSize: "15px",
-
-                background:
-                  "linear-gradient(135deg,#60a5fa,#2563eb)",
-
-                boxShadow:
-                  "0 10px 25px rgba(59,130,246,0.20)",
-
-                transition: "0.4s",
-
-                "&:hover": {
-
-                  transform:
-                    "translateY(-5px)",
-
-                  background:
-                    "linear-gradient(135deg,#3b82f6,#1d4ed8)",
-                }
-              }}
-            >
-              Learn More
-            </Button>
-
+            {/* RIGHT IMAGE (Right to Left Animation) */}
+            <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
+              <ScrollReveal direction="right" delay={0.2}>
+                <Box
+                  component="img"
+                  src="/pic1.png"
+                  alt="NILA Spine Clinic"
+                  sx={{
+                    width: { xs: "100%", sm: "90%", md: "100%", lg: "110%" },
+                    maxWidth: "700px",
+                    height: { xs: "260px", sm: "340px", md: "440px" },
+                    borderRadius: "20px",
+                    objectFit: "cover",
+                    boxShadow: "0 15px 35px rgba(0,0,0,.12)",
+                    display: "block",
+                  }}
+                />
+              </ScrollReveal>
+            </Box>
           </Box>
-
-        </Grid>
-
-      </Grid>
-
-      {/* ================= BIG CONTENT BOX ================= */}
-
-      <Box
-        sx={{
-
-          m: {
-            xs: 3,
-            md: 10,
-          },
-
-          p: {
-            xs: 3,
-            sm: 4,
-            md: 6,
-          },
-
-          borderRadius: {
-            xs: "24px",
-            md: "40px",
-          },
-
-          background:
-            "rgba(255,255,255,0.58)",
-
-          backdropFilter:
-            "blur(16px)",
-
-          border:
-            "1px solid rgba(255,255,255,0.4)",
-
-          boxShadow:
-            "0 15px 35px rgba(59,130,246,0.10)",
-
-          textAlign: "center",
-
-          animation:
-            "fadeUp 1.4s ease",
-        }}
-      >
-
-        <Typography
-          sx={{
-
-            color: "#2563eb",
-
-            fontWeight: "bold",
-
-            mb: 3,
-
-            fontSize: {
-              xs: "24px",
-              md: "44px",
-            },
-          }}
-        >
-          Trusted Clinical Excellence
-        </Typography>
-
-        <Typography
-          sx={{
-
-            maxWidth: "950px",
-
-            mx: "auto",
-
-            color: "#475569",
-
-            lineHeight: {
-              xs: "30px",
-              md: "38px",
-            },
-
-            fontSize: {
-              xs: "14px",
-              md: "18px",
-            },
-          }}
-        >
-          Our clinic combines advanced treatment systems,
-          compassionate physical therapy and highly experienced
-          medical specialists to deliver exceptional rehabilitation
-          experiences for patients of all ages. We focus on
-          providing safe, customized physical training and modern pain management
-          solutions for long-term health and dynamic performance recovery.
-        </Typography>
-
+        </Container>
       </Box>
 
-      {/* ================= CARDS ================= */}
-
-      <Grid
-        container
-
-        spacing={{xs:10,md:4}}
-
-        sx={{
-          mt: {
-            xs: 2,
-            md: 5,
-          },
-
-          ml:{xs:8,md:35},
-        }}
-      >
-
-        {stats.map((item, index) => (
-
-          <Grid
-            item
-
-            xs={12}
-
-            sm={6}
-
-            md={3}
-
-            key={index}
+      {/* ================= WHO WE ARE (Bottom to Top) ================= */}
+      <Box sx={{ py: { xs: 8, md: 12 }, background: "#fff", overflow: "hidden" }}>
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: { xs: 4, md: 6 },
+            }}
           >
-
-            <Box
-              sx={{
-
-                height: "100%",
-
-                p: {
-                  xs: 3,
-                  md: 4,
-                },
-
-                borderRadius: "28px",
-
-                textAlign: "center",
-
-                background:
-                  "rgba(255,255,255,0.58)",
-
-                backdropFilter:
-                  "blur(14px)",
-
-                border:
-                  "1px solid rgba(255,255,255,0.35)",
-
-                boxShadow:
-                  "0 12px 30px rgba(59,130,246,0.08)",
-
-                transition: "0.4s",
-
-                animation:
-                  `fadeUp ${1.5 + index * 0.2}s ease`,
-
-                "&:hover": {
-
-                  transform:
-                    "translateY(-10px)",
-                }
-              }}
-            >
-
-              <Typography
-                sx={{
-
-                  color: "#2563eb",
-
-                  fontWeight: "bold",
-
-                  mb: 1,
-
-                  fontSize: {
-                    xs: "25px",
-                    md: "36px",
-                  },
-                }}
-              >
-                {item.number}
-              </Typography>
-
-              <Typography
-                sx={{
-
-                  color: "#334155",
-
-                  fontWeight: 600,
-
-                  fontSize: {
-                    xs: "15px",
-                    md: "17px",
-                  },
-                }}
-              >
-                {item.title}
-              </Typography>
-
+            {/* LEFT IMAGE */}
+            <Box sx={{ flex: 1, minWidth: 0 }}>
+              <ScrollReveal direction="bottom" delay={0.1}>
+                <Box
+                  component="img"
+                  src="/aboutpic.png"
+                  alt="Doctor"
+                  sx={{
+                    width: { xs: "100%", sm: "90%", md: "100%" },
+                    maxWidth: "580px",
+                    height: { xs: "300px", md: "440px" },
+                    borderRadius: "25px",
+                    boxShadow: "0 15px 35px rgba(0,0,0,.12)",
+                    objectFit: "cover",
+                    display: "block",
+                    mx: "auto",
+                  }}
+                />
+              </ScrollReveal>
             </Box>
 
-          </Grid>
+            {/* RIGHT CONTENT */}
+            <Box sx={{ flex: 1, minWidth: 0 }}>
+              <ScrollReveal direction="bottom" delay={0.1}>
+                <Typography sx={{ color: "#06b6d4", fontWeight: 700, letterSpacing: "1px", mb: 2, fontSize: "14px" }}>
+                  WHO WE ARE
+                </Typography>
+              </ScrollReveal>
+              
+              <ScrollReveal direction="bottom" delay={0.2}>
+                <Typography
+                  sx={{
+                    fontWeight: 800, color: "#111827", lineHeight: 1.15, mb: 3,
+                    fontSize: { xs: "34px", sm: "44px", md: "50px" },
+                  }}
+                >
+                  Dedicated to Your<br />Recovery Journey
+                </Typography>
+              </ScrollReveal>
 
-        ))}
+              <ScrollReveal direction="bottom" delay={0.3}>
+                <Typography sx={{ color: "#475569", lineHeight: 2, fontSize: { xs: "15px", md: "18px" }, mb: 4 }}>
+                  At NILA Spine & Joint Clinic, we provide comprehensive
+                  physiotherapy and rehabilitation services for people of all ages.
+                  Our experienced therapists use advanced techniques and modern
+                  equipment to treat pain, restore movement, and improve quality of life.
+                </Typography>
+              </ScrollReveal>
 
-      </Grid>
+              <Stack spacing={2}>
+                {[
+                  "Personalized treatment plans for every patient",
+                  "Advanced technology & modern equipment",
+                  "Safe, effective & evidence-based therapies",
+                  "Compassionate care & continuous support",
+                ].map((text, i) => (
+                  <ScrollReveal key={i} direction="bottom" delay={0.4 + i * 0.1}>
+                    <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                      <VerifiedUserOutlinedIcon sx={{ color: "#06b6d4", flexShrink: 0 }} />
+                      <Typography sx={{ color: "#374151", fontSize: "15px" }}>{text}</Typography>
+                    </Box>
+                  </ScrollReveal>
+                ))}
+              </Stack>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
 
-    </Box>
+      {/* ================= WE TREAT (Bottom to Top) ================= */}
+      <Box sx={{ py: { xs: 8, md: 10 }, background: "#f8fbff", overflow: "hidden" }}>
+        <Container maxWidth="xl">
+          <ScrollReveal direction="bottom">
+            <Typography sx={{ color: "#06b6d4", textAlign: "center", fontWeight: 700, letterSpacing: "1px", mb: 1, fontSize: "14px" }}>
+              WE TREAT
+            </Typography>
+          </ScrollReveal>
+
+          <ScrollReveal direction="bottom" delay={0.1}>
+            <Typography sx={{ textAlign: "center", fontWeight: 800, color: "#111827", fontSize: { xs: "30px", md: "48px" }, mb: 6 }}>
+              Relief for Every Pain
+            </Typography>
+          </ScrollReveal>
+
+          {/* Cards Flex Row */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              flexWrap: "wrap",
+              gap: "20px",
+            }}
+          >
+            {[
+              { src: "/pic1.png", label: "முதுகு வலி சிகிச்சைகள்" },
+              { src: "/pic2.png", label: "தோள்பட்டை • கழுத்து வலி" },
+              { src: "/pic3.png", label: "முழு உடல் வலி சிகிச்சைகள்" },
+              { src: "/pic4.png", label: "மூட்டு • முதுகு வலி" },
+            ].map((card, i) => {
+              // கார்டுகள் ஒன்றன்பின் ஒன்றாக வர தலா 0.15s கேப் லாஜிக்
+              const cardDelay = (i % 4) * 0.15;
+
+              return (
+                <Box
+                  key={i}
+                  sx={{
+                    flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 12px)", md: "1 1 calc(25% - 15px)" },
+                    minWidth: { xs: "100%", sm: "calc(50% - 12px)", md: "calc(25% - 15px)" },
+                    maxWidth: { xs: "100%", sm: "calc(50% - 12px)", md: "calc(25% - 15px)" },
+                  }}
+                >
+                  <ScrollReveal direction="bottom" delay={cardDelay}>
+                    <Box
+                      sx={{
+                        borderRadius: "20px",
+                        overflow: "hidden",
+                        border: "3px solid #16c5db",
+                        boxShadow: "0 10px 30px rgba(0,0,0,.08)",
+                        display: "flex",
+                        flexDirection: "column",
+                        background: "#fff",
+                        transition: "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease",
+                        "&:hover": {
+                          transform: { xs: "none", md: "translateY(-8px)" },
+                          boxShadow: "0 16px 32px rgba(6, 182, 212, 0.16)",
+                        }
+                      }}
+                    >
+                      <Box
+                        component="img"
+                        src={card.src}
+                        sx={{
+                          width: "100%",
+                          height: { xs: "240px", sm: "280px", md: "360px" },
+                          objectFit: "cover",
+                          display: "block",
+                          flexShrink: 0,
+                        }}
+                      />
+                      <Box sx={{ bgcolor: "#487ceb", py: 2.5, px: 1 }}>
+                        <Typography align="center" sx={{ color: "#fff", fontWeight: 700, fontSize: "15px", lineHeight: 1.4 }}>
+                          {card.label}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </ScrollReveal>
+                </Box>
+              );
+            })}
+          </Box>
+        </Container>
+      </Box>
+
+      {/* ================= COUNTER SECTION (Bottom to Top) ================= */}
+      <Box sx={{ py: { xs: 8, md: 10 }, background: "#f5f9ff", overflow: "hidden" }}>
+        <Container
+          maxWidth={false}
+          sx={{ maxWidth: "1400px", mx: "auto", px: { xs: 2, sm: 3, md: 5, lg: 6 } }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: "24px",
+            }}
+          >
+            {[
+              { icon: <Groups2OutlinedIcon sx={{ fontSize: 36 }} />, value: "10+", label: "Expert Therapists" },
+              { icon: <FavoriteBorderOutlinedIcon sx={{ fontSize: 36 }} />, value: "500+", label: "Recovered Patients" },
+              { icon: <AccessTimeOutlinedIcon sx={{ fontSize: 36 }} />, value: "24/7", label: "Emergency Support" },
+              { icon: <MedicalServicesOutlinedIcon sx={{ fontSize: 36 }} />, value: "Modern", label: "Rehab Equipment" },
+            ].map((item, i) => {
+              const counterDelay = (i % 4) * 0.15;
+
+              return (
+                <Box
+                  key={i}
+                  sx={{
+                    flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 12px)", md: "1 1 calc(25% - 18px)" },
+                    minWidth: { xs: "100%", sm: "calc(50% - 12px)", md: "calc(25% - 18px)" },
+                    maxWidth: { xs: "100%", sm: "calc(50% - 12px)", md: "calc(25% - 18px)" },
+                  }}
+                >
+                  <ScrollReveal direction="bottom" delay={counterDelay}>
+                    <Box
+                      sx={{
+                        bgcolor: "#fff",
+                        borderRadius: "20px",
+                        p: 4,
+                        textAlign: "center",
+                        boxShadow: "0 10px 30px rgba(0,0,0,.08)",
+                        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                        "&:hover": {
+                          transform: "translateY(-5px)",
+                          boxShadow: "0 14px 28px rgba(0,0,0,.12)",
+                        }
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          width: 72, height: 72, mx: "auto", mb: 2,
+                          borderRadius: "50%", bgcolor: "#e0f7ff", color: "#06b6d4",
+                          display: "flex", justifyContent: "center", alignItems: "center",
+                        }}
+                      >
+                        {item.icon}
+                      </Box>
+                      <Typography sx={{ fontWeight: 800, color: "#06b6d4", fontSize: "40px", lineHeight: 1.1, mb: 0.5 }}>
+                        {item.value}
+                      </Typography>
+                      <Typography fontWeight={600} sx={{ color: "#374151" }}>
+                        {item.label}
+                      </Typography>
+                    </Box>
+                  </ScrollReveal>
+                </Box>
+              );
+            })}
+          </Box>
+        </Container>
+      </Box>
+    </>
   );
 }
 

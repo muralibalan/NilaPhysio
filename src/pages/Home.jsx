@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import { motion } from "framer-motion";
 import {
   Box,
   Typography,
@@ -14,9 +14,26 @@ import Doctor from "./Doctor";
 function Home() {
   const navigate = useNavigate();
 
+  // வலமிருந்து இடமாக வரும் அனிமேஷனுக்கான Variant configuration
+  const rightToLeftVariants = {
+    hidden: { x: 150, opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: { duration: 1.5, ease: "easeOut" }
+    }
+  };
+
   return (
     <>
       <Box
+        component={motion.div}
+        initial={{ scale: 1.15 }}
+        animate={{ scale: 1 }}
+        transition={{
+          duration: 2.2,
+          ease: "easeOut",
+        }}
         sx={{
           width: "100%",
           minHeight: { xs: "auto", md: "100vh" },
@@ -28,7 +45,8 @@ function Home() {
           overflow: "hidden",
           display: "flex",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          mt: 5,
         }}
       >
         {/* OVERLAY */}
@@ -36,7 +54,6 @@ function Home() {
           sx={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(240,248,255,0.55) 100%)",
             zIndex: 1
           }}
         />
@@ -66,41 +83,41 @@ function Home() {
             maxWidth: "1440px",
             minHeight: { xs: "auto", md: "100vh" },
             display: "flex",
-            // Mobile-il Image Top, Text Bottom. Laptop-il side-by-side row-view.
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
             alignItems: "center",
             gap: { xs: 4, sm: 5, md: 3, lg: 5 },
             px: { xs: 2.5, sm: 5, md: 6, lg: 10 },
-            pt: { xs: 12, sm: 14, md: 0 }, 
+            pt: { xs: 12, sm: 14, md: 0 },
             pb: { xs: 8, sm: 10, md: 4 }
           }}
         >
-          {/* [IMAGE TOP ON MOBILE] - VISUAL CARD */}
+          {/* [IMAGE TOP ON MOBILE] - VISUAL CARD (இடமிருந்து வலம் நகரும்) */}
           <Box
+            component={motion.div}
+            initial={{ x: -150, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.5 }}
             sx={{
-              width: { xs: "100%", md: "45%", lg: "45%" },
+              width: { xs: "100%", md: "52%", lg: "50%" },
+              textAlign: { xs: "center", md: "left" },
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              order: { xs: 1, md: 2 }, // Mobile-il ithu muthalil (Top) display aagum
-              mt: { xs: "10px", sm: "20px", md: 0 },
-              mb: { xs: 1, md: 0 }
+              flexDirection: "column",
+              alignItems: { xs: "center", md: "flex-start" },
+              order: { xs: 2, md: 1 },
             }}
           >
             <Box
               sx={{
-                width: { xs: "100%", sm: "360px", md: "380px", lg: "450px" },
-                height: { xs: "240px", sm: "320px", md: "440px", lg: "520px" },
+                width: { xs: "100%", sm: "360px", md: "380px", lg: "650px" },
+                height: { xs: "300px", sm: "320px", md: "440px", lg: "520px" },
                 borderRadius: { xs: "14px", sm: "24px", md: "32px" },
                 overflow: "hidden",
                 position: "relative",
-                
                 background: "rgba(255, 255, 255, 0.3)",
                 backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
                 border: "2px solid rgba(255, 255, 255, 0.9)",
-                
                 boxShadow: `
                   0 15px 35px rgba(0, 0, 0, 0.15),
                   0 0 25px rgba(37, 99, 235, 0.1),
@@ -114,7 +131,7 @@ function Home() {
             >
               <Box
                 component="img"
-                src="home7.jpg"
+                src="aboutpic.png"
                 alt="physiotherapist"
                 sx={{
                   width: "100%",
@@ -126,29 +143,29 @@ function Home() {
             </Box>
           </Box>
 
-          {/* [CONTENT BOTTOM ON MOBILE] - TEXT COLUMN */}
+          {/* [CONTENT BOTTOM ON MOBILE] - TEXT COLUMN (வலமிருந்து இடமாக நகரும் அனிமேஷன் சேர்க்கப்பட்டுள்ளது) */}
           <Box
+            component={motion.div}
+            variants={rightToLeftVariants}
+            initial="hidden"
+            animate="visible"
             sx={{
               width: { xs: "100%", md: "52%", lg: "50%" },
               textAlign: { xs: "center", md: "left" },
               display: "flex",
               flexDirection: "column",
               alignItems: { xs: "center", md: "flex-start" },
-              order: { xs: 2, md: 1 } // Mobile-il ithu irandavathaaga (Bottom) display aagum
+              order: { xs: 2, md: 1 }
             }}
           >
             {/* TAGLINE */}
             <Typography
               sx={{
-                color: "#2563eb",
+                color: "#1159f4",
+                textShadow: "0.5px 0.5px 0.6px rgba(29, 29, 29, 0.9), 0px 0px 2px rgb(255, 255, 255)",
                 fontWeight: "bold",
-                letterSpacing: "1px",
+                letterSpacing: "0.8px",
                 fontSize: { xs: "11px", sm: "13px", md: "15px", lg: "18px" },
-                animation: "fadeText 1s ease",
-                "@keyframes fadeText": {
-                  from: { opacity: 0, transform: "translateY(15px)" },
-                  to: { opacity: 1, transform: "translateY(0px)" }
-                }
               }}
             >
               ADVANCED PHYSIOTHERAPY & REHAB
@@ -162,11 +179,7 @@ function Home() {
                 lineHeight: { xs: "36px", sm: "52px", md: "68px", lg: "84px" },
                 fontWeight: "bold",
                 color: "#111",
-                animation: "slideLeft 1.2s ease",
-                "@keyframes slideLeft": {
-                  from: { opacity: 0, transform: "translateX(-30px)" },
-                  to: { opacity: 1, transform: "translateX(0px)" }
-                }
+                textShadow: "3px 3px 3px rgba(251, 251, 251, 0.9), 0px 0px 3px rgb(106, 106, 106)",
               }}
             >
               Your Recovery
@@ -187,34 +200,27 @@ function Home() {
                   fontSize: { xs: "28px", sm: "42px", md: "56px", lg: "72px" },
                   lineHeight: { xs: "36px", sm: "52px", md: "68px", lg: "84px" },
                   fontWeight: "bold",
-                  background: "linear-gradient(to right, #2563eb, #60a5fa)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent"
+                  color: "#2563eb",
+                  textShadow: "3px 3px 3px rgba(45, 44, 44, 0.9), 0px 0px 3px rgb(255, 255, 255)",
                 }}
               >
-               Our Commitment
+                Our Commitment
               </Typography>
-
-              
             </Box>
 
             {/* SUB DESCRIPTION */}
             <Typography
               sx={{
                 mt: "12px",
-                color: "#444",
-                fontSize: { xs: "13.5px", sm: "15px", md: "16px", lg: "19px" },
+                color: "#454444",
+                textShadow: "0.5px 0.5px 0.6px rgba(255, 246, 246, 0.9), 0px 0px 2px rgb(255, 255, 255)",
+                fontSize: { xs: "13.5px", sm: "15px", md: "16px", lg: "20px" },
                 lineHeight: { xs: "20px", sm: "24px", md: "28px", lg: "34px" },
                 width: { xs: "100%", sm: "85%", md: "95%" },
-                animation: "fadePara 1.5s ease",
-                "@keyframes fadePara": {
-                  from: { opacity: 0 },
-                  to: { opacity: 1 }
-                }
               }}
             >
-              Experience advanced clinical movement rehabilitation with expert 
-              physiotherapists and targeted treatment procedures for a pain-free, 
+              Experience advanced clinical movement rehabilitation with expert
+              physiotherapists and targeted treatment procedures for a pain-free,
               healthier, and completely active lifestyle.
             </Typography>
 

@@ -65,7 +65,7 @@ const NavBar = () => {
         >
           <Box
             component="img"
-            src="360_F_269645659_AoyvKF9SAh7OLxbdNOfoo1dzS3byqWZr-removebg-preview.png"
+            src="nilalogo.png"
             alt="Physio Clinic Logo"
             sx={{
               width: "100%",
@@ -188,7 +188,7 @@ const NavBar = () => {
                 filter: "drop-shadow(0px 0px 8px rgba(33, 150, 243, 0.45))",
                 transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                 mt: 0.5, // Subtle push to look centered with decreased height
-                
+
                 "&:hover": {
                   transform: "scale(1.08) rotate(2deg)",
                 }
@@ -196,7 +196,7 @@ const NavBar = () => {
             >
               <Box
                 component="img"
-                src="360_F_269645659_AoyvKF9SAh7OLxbdNOfoo1dzS3byqWZr-removebg-preview.png"
+                src="nilalogo.png"
                 alt="Physio Clinic Logo"
                 sx={{
                   width: "100%",
@@ -213,7 +213,7 @@ const NavBar = () => {
                 fontWeight: 800,
                 color: "#1565c0",
                 textTransform: "uppercase", // Clean premium clinic style
-                letterSpacing: "1.5px", // Spaced letters for high-end look
+                letterSpacing: "1px", // Spaced letters for high-end look
                 fontFamily: "'Poppins', 'Montserrat', sans-serif",
                 fontSize: {
                   xs: "1.1rem",
@@ -235,7 +235,10 @@ const NavBar = () => {
                 xs: "none",
                 md: "flex",
               },
-              gap: 4,
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 5,
             }}
           >
             {navItems.map((item) => (
@@ -262,6 +265,7 @@ const NavBar = () => {
               display: "flex",
               alignItems: "center",
               gap: 1,
+              flexShrink: 0,
             }}
           >
             {/* Desktop Login */}
