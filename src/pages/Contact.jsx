@@ -29,7 +29,7 @@ function Contact() {
         py: { xs: 8, md: 0 },
 
         backgroundImage:
-          "url('/MNd7xEbNWvIbvw0Tnx9mqIXTwpKTsfqKIzRA4rQ95oE6YmPnVrUvQQbXGA4RI7pYrJ0ImEfhHm-lM0rwrn25vznw6Sap8jVVX9uXOgfxZKeJXCw7ZAXcEyAd0yvv_fdOOOy1r1sMLR8_XoOqBWd7LicxaJvSRI-3QUxd8WXdmZVYRnO0uFMfVryWJqJqQYeN.jpg')",
+          "url('contactbg.png')",
 
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -41,7 +41,7 @@ function Contact() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(rgba(7,15,35,0.45),rgba(7,15,35,0.35))", // Contrast adjusted for clear reading
+            "linear-gradient(rgba(7,15,35,0.35),rgba(7,15,35,0.25))", // Contrast adjusted for clear reading
         }}
       />
 
@@ -97,17 +97,19 @@ function Contact() {
           <Box>
             <Typography
               sx={{
-                color: "#2563eb",
-                letterSpacing: "3px",
+                color: "#2866f8",
+                fontFamily:"fangsong",
                 fontWeight: "bold",
                 mb: 2,
-                mt: 3,
+                mt: 4,
 
                 fontSize: {
-                  xs: "18px",
+                  xs: "28px",
                   sm: "24px",
-                  md: "40px",
+                  md: "43px",
                 },
+                 textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
               }}
             >
               CONTACT US
@@ -121,10 +123,12 @@ function Contact() {
                 mb: 3,
 
                 fontSize: {
-                  xs: "32px",
+                  xs: "36px",
                   sm: "42px",
                   md: "50px",
                 },
+                textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
               }}
             >
               Restore Mobility.
@@ -134,15 +138,17 @@ function Contact() {
 
             <Typography
               sx={{
-                color: "rgba(255,255,255,0.85)",
+                color: "rgb(254, 254, 254)",
                 lineHeight: "28px",
                 mb: 5,
                 maxWidth: "450px",
 
                 fontSize: {
-                  xs: "14px",
+                  xs: "17px",
                   md: "16px",
                 },
+                textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
               }}
             >
               Our experienced physiotherapy specialists are here to help you recover
@@ -172,6 +178,8 @@ function Contact() {
                     sx={{
                       color: "#fff",
                       fontWeight: "bold",
+                      textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
                     }}
                   >
                     Phone
@@ -179,7 +187,9 @@ function Contact() {
 
                   <Typography
                     sx={{
-                      color: "rgba(255,255,255,0.72)",
+                      color: "rgb(255, 255, 255)",
+                      textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
                     }}
                   >
                     +91 7010936234
@@ -203,6 +213,8 @@ function Contact() {
                     sx={{
                       color: "#fff",
                       fontWeight: "bold",
+                      textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
                     }}
                   >
                     Email
@@ -210,7 +222,9 @@ function Contact() {
 
                   <Typography
                     sx={{
-                      color: "rgba(255,255,255,0.72)",
+                      color: "rgb(255, 255, 255)",
+                      textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
                     }}
                   >
                     prejen8283@gmail.com
@@ -234,6 +248,8 @@ function Contact() {
                     sx={{
                       color: "#fff",
                       fontWeight: "bold",
+                      textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
                     }}
                   >
                     Location
@@ -241,7 +257,9 @@ function Contact() {
 
                   <Typography
                     sx={{
-                      color: "rgba(255,255,255,0.72)",
+                      color: "rgb(255, 255, 255)",
+                      textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
                     }}
                   >
                     58/32 Mahadhana street<br/>
@@ -276,7 +294,7 @@ function Contact() {
               },
 
               background: "rgba(9, 50, 251, 0.08)",
-              backdropFilter: "blur(18px)",
+              backdropFilter: "blur(3px)",
               border: "1px solid rgba(255,255,255,0.15)",
               boxShadow: "0 20px 50px rgba(0,0,0,0.22)",
 
@@ -297,6 +315,8 @@ function Contact() {
                   sm: "32px",
                   md: "40px",
                 },
+                textShadow:
+                  "1.5px 1.5px 1.5px rgba(43, 42, 42, 0.9), 0px 0px 2px rgb(0, 0, 0)",
               }}
             >
               Request Consultation
@@ -306,6 +326,8 @@ function Contact() {
               sx={{
                 color: "rgba(255,255,255,0.72)",
                 mb: 4,
+                textShadow:
+                  "1px 1px 1px rgba(43, 42, 42, 0.9), 0px 0px 1px rgb(0, 0, 0)",
               }}
             >
               Share your details, and our care experts will reach out to schedule your assessment.

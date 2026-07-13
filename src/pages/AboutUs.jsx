@@ -228,30 +228,27 @@ function AboutUs() {
                     fontSize: { xs: "34px", sm: "44px", md: "50px" },
                   }}
                 >
-                  Dedicated to Your<br />Recovery Journey
+                  உங்கள் நலமே <br />எங்கள் பயணம்
                 </Typography>
               </ScrollReveal>
 
               <ScrollReveal direction="bottom" delay={0.3}>
-                <Typography sx={{ color: "#475569", lineHeight: 2, fontSize: { xs: "15px", md: "18px" }, mb: 4 }}>
-                  At NILA Spine & Joint Clinic, we provide comprehensive
-                  physiotherapy and rehabilitation services for people of all ages.
-                  Our experienced therapists use advanced techniques and modern
-                  equipment to treat pain, restore movement, and improve quality of life.
+                <Typography sx={{ color: "#3f4b5b", lineHeight: 2, fontSize: { xs: "15px", md: "16px" }, mb: 4,fontWeight:"bold",fontFamily:"revert-layer" }}>
+                  NILA முதுகுத்தண்டு மற்றும் மூட்டு சிகிச்சை மையத்தில், அனைத்து வயதினருக்கும் முழுமையான பிசியோதெரபி மற்றும் மறுவாழ்வு சிகிச்சைகளை வழங்குகிறோம். அனுபவமிக்க நிபுணர்கள், நவீன உபகரணங்கள் மற்றும் மேம்பட்ட சிகிச்சை முறைகள் மூலம் வலியைக் குறைத்து, உடல் இயக்கத்தை மீட்டெடுத்து, சிறந்த வாழ்க்கைத் தரத்தை மேம்படுத்த உதவுகிறோம்.
                 </Typography>
               </ScrollReveal>
 
               <Stack spacing={2}>
                 {[
-                  "Personalized treatment plans for every patient",
-                  "Advanced technology & modern equipment",
-                  "Safe, effective & evidence-based therapies",
-                  "Compassionate care & continuous support",
+                  "ஒவ்வொரு நோயாளிக்கும் தனிப்பட்ட சிகிச்சை திட்டம்",
+                  "நவீன தொழில்நுட்பம் மற்றும் மேம்பட்ட உபகரணங்கள்",
+                  "பாதுகாப்பான மற்றும் பயனுள்ள சிகிச்சை முறைகள்",
+                  "அக்கறையான பராமரிப்பு மற்றும் தொடர்ச்சியான ஆதரவு",
                 ].map((text, i) => (
                   <ScrollReveal key={i} direction="bottom" delay={0.4 + i * 0.1}>
-                    <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                    <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
                       <VerifiedUserOutlinedIcon sx={{ color: "#06b6d4", flexShrink: 0 }} />
-                      <Typography sx={{ color: "#374151", fontSize: "15px" }}>{text}</Typography>
+                      <Typography sx={{ color: "#374151", fontSize: "14px",fontWeight:"bold" }}>{text}</Typography>
                     </Box>
                   </ScrollReveal>
                 ))}
@@ -365,7 +362,7 @@ function AboutUs() {
                 value: "19+",
                 label: "Years of Experience"
               },
-              { icon: <FavoriteBorderOutlinedIcon sx={{ fontSize: 36 }} />, value: "500+", label: "Recovered Patients" },
+              { icon: <FavoriteBorderOutlinedIcon sx={{ fontSize: 36 }} />, value: "15000+", label: "Recovered Patients" },
               { icon: <AccessTimeOutlinedIcon sx={{ fontSize: 36 }} />, value: "24/7", label: "Emergency Support" },
               { icon: <MedicalServicesOutlinedIcon sx={{ fontSize: 36 }} />, value: "Modern", label: "Rehab Equipment" },
             ].map((item, i) => {

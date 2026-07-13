@@ -29,7 +29,7 @@ const serviceCategories = [
     items: [
       { name: "Arthritis Treatment", img: "/arthritis.png" },
       { name: "Cervical Spondylosis", img: "/Cervical.png" },
-      { name: "Slip Disc Therapy", img: "/slipped-disc1.png" },
+      { name: "planter fasciitis", img: "/planter fasciitis.png" },
       { name: "Frozen Shoulder", img: "/Frozen-Shoulder-and-Physiotherapy.png" },
       { name: "Tennis Elbow", img: "/Tennis-Elbow-Treatment.png" },
       { name: "Ligament Injury", img: "/ligament.png" },
@@ -46,6 +46,19 @@ const serviceCategories = [
       { name: "Ankle Sprain Recovery", img: "/ankle.png" },
       { name: "Fracture Recovery", img: "/FractureTreatmentBangalor.png" },
       { name: "Strength Training", img: "/srength.png" },
+    ],
+  },
+  {
+    category: "Neuro Rehabilitation Therapy",
+    description:
+      "Specialized rehabilitation care designed to improve movement, muscle control, balance, coordination, and functional independence in individuals with neurological conditions.",
+    items: [
+      { name: "Bell’s Palsy", img: "/bell'spalsy.png" },
+      { name: "Stroke Paralysis", img: "/StrokeParalysis.png" },
+      { name: "Parkinsonism", img: "/Parkinsonism.png" },
+      { name: "Cerebral Palsy", img: "/Cerebral.png" },
+      {name:"Multiple Sclerosis",img:"/MultipleSclerosis.png"},
+      {name:"Muscular Dystrophy",img:"/MuscularDystrophy.png"}
     ],
   },
   {
@@ -72,12 +85,12 @@ function ScrollReveal({ children, delay = 0 }) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target); 
+          observer.unobserve(entry.target);
         }
       },
       {
-        threshold: 0.1, 
-        rootMargin: "0px 0px -50px 0px" 
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
       }
     );
 
@@ -118,7 +131,7 @@ function Services({ home = false }) {
         py: { xs: 8, md: 12 },
         px: { xs: 2.5, sm: 4, md: 6 },
         background: "linear-gradient(180deg, #f4f8fe 0%, #edf3fc 100%)",
-        overflow: "hidden", 
+        overflow: "hidden",
       }}
     >
       {/* MAIN HEADER TITLE */}
@@ -140,7 +153,7 @@ function Services({ home = false }) {
 
       {sections.map((section, index) => (
         <Box key={index} sx={{ mb: { xs: 8, md: 10 } }}>
-          
+
           {/* CATEGORY TITLE */}
           <ScrollReveal delay={0.1}>
             <Typography
@@ -150,7 +163,7 @@ function Services({ home = false }) {
                 color: "#0f172a",
                 mb: 2,
                 fontFamily: "sans-serif",
-                fontSize: { xs: "24px", sm: "32px", md: "40px" },
+                fontSize: { xs: "24px", sm: "32px", md: "48px" },
                 lineHeight: { xs: "32px", md: "48px" },
                 fontWeight: "bold",
                 textShadow: "3px 3px 3px rgba(255, 255, 255, 0.9), 0px 0px 2px rgb(0, 0, 0)",
@@ -169,7 +182,7 @@ function Services({ home = false }) {
                 maxWidth: 720,
                 mx: "auto",
                 mb: { xs: 4, md: 6 },
-                fontSize: { xs: "14px", md: "16px" },
+                fontSize: { xs: "14px", md: "18px" },
                 lineHeight: 1.6,
               }}
             >
@@ -192,7 +205,7 @@ function Services({ home = false }) {
             }}
           >
             {section.items.map((item, i) => {
-             
+
               const staggerDelay = (i % 3) * 0.15;
 
               return (
@@ -206,7 +219,6 @@ function Services({ home = false }) {
                       flexDirection: "column",
                       boxShadow: "0 4px 20px rgba(0, 0, 0, 0.04)",
                       border: "1px solid rgba(255, 255, 255, 0.7)",
-                     
                       transition: "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease",
                       "&:hover": {
                         transform: { xs: "none", md: "translateY(-8px)" },
@@ -221,8 +233,8 @@ function Services({ home = false }) {
                       alt={item.name}
                       sx={{
                         width: "100%",
-                        height: { xs: 220, sm: 240, md: 260 },
-                        objectFit: "cover",
+                        height: { xs: 240, sm: 240, md: 260 },
+                        objectFit: "100% 100%",
                         display: "block",
                       }}
                     />
@@ -237,9 +249,7 @@ function Services({ home = false }) {
                       }}
                     >
                       <Typography
-                        variant="h6"
-                        fontWeight={700}
-                        sx={{ color: "#0f172a", fontSize: { xs: "18px", md: "20px" } }}
+                        sx={{ color: "#0f172a", fontSize: { xs: "18px", md: "20px" },fontWeight:"bolder",fontFamily:"sans-serif" }}
                       >
                         {item.name}
                       </Typography>

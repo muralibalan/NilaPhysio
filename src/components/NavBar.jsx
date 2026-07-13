@@ -84,7 +84,7 @@ const NavBar = () => {
             fontFamily: "'Poppins', 'Roboto', sans-serif",
           }}
         >
-          Physio Clinic
+          Nila <br /><Typography sx={{fontSize:"16px",fontWeight:"800"}}>Spine & Joint clinic</Typography>
         </Typography>
       </Box>
 
@@ -224,7 +224,7 @@ const NavBar = () => {
                 WebkitTextFillColor: "transparent", // Creates subtle luxury text gradient
               }}
             >
-              Physio Clinic
+             Nila  <br /><Typography sx={{fontSize:"16px",fontWeight:"800"}}>Spine & Joint clinic</Typography>
             </Typography>
           </Box>
 

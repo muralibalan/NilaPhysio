@@ -13,10 +13,11 @@ import Services from "./pages/Services";
 import Doctor from "./pages/Doctor";
 import Contact from "./pages/Contact";
 import Appointment from "./pages/Appointment";
-
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
 
         <Route path="/" element={<MainLayout />}>

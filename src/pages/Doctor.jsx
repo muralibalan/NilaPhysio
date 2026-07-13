@@ -4,21 +4,19 @@ import { Box, Typography, Button } from "@mui/material";
 function Doctor({ preview }) {
   const doctors = [
     {
-      image:
-        "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=900&q=80",
+     image: "/maledoctor.png",
       name: "Dr. Sarah Johnson",
       department: "Lead Physiotherapist",
       description:
         "Expert in clinical assessment, posture alignment, and comprehensive custom recovery care.",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80",
+      image: "/femaledoctor.png",
       name: "Dr. Michael Lee",
       department: "Sports Physical Therapist",
       description:
         "Specialist in athlete injury rehabilitation, joint agility training, and dynamic performance therapy.",
-    },
+    }
   ];
 
   const displayDoctors = preview ? doctors.slice(0, 2) : doctors;
@@ -129,7 +127,7 @@ function Doctor({ preview }) {
               lineHeight: 1.15,
             }}
           >
-            Meet Our{" "}
+            எங்கள் {" "}
             <Box
               component="span"
               sx={{
@@ -138,7 +136,7 @@ function Doctor({ preview }) {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Experts
+              சிறப்பு நிபுணர்கள்
             </Box>
           </Typography>
 
@@ -152,9 +150,7 @@ function Doctor({ preview }) {
               lineHeight: { xs: "24px", md: "30px" },
             }}
           >
-            Our experienced physiotherapy specialists provide advanced
-            rehabilitation treatments with modern technology and comfortable
-            patient movement care.
+            எங்கள் அனுபவமிக்க பிசியோதெரபி நிபுணர்கள், நவீன தொழில்நுட்பங்கள் மற்றும் மேம்பட்ட மறுவாழ்வு சிகிச்சை முறைகள் மூலம், நோயாளிகளின் உடல் இயக்கத்தை மேம்படுத்தி வசதியான மற்றும் சிறந்த பராமரிப்பை வழங்குகின்றனர்.
           </Typography>
 
           {/* Cyan underline accent */}
