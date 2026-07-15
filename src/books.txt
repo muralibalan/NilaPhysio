@@ -1,4 +1,5 @@
 find . -name "._*" -delete
+find . -name "._*" -delete
 
 
 import React, { useState } from "react";
