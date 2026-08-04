@@ -3,20 +3,20 @@ import { Box, Typography, Button } from "@mui/material";
 
 function Doctor({ preview }) {
   const doctors = [
-    {
-     image: "/maledoctor.png",
-      name: "Dr. Sarah Johnson",
-      department: "Lead Physiotherapist",
-      description:
-        "Expert in clinical assessment, posture alignment, and comprehensive custom recovery care.",
-    },
-    {
-      image: "/femaledoctor.png",
-      name: "Dr. Michael Lee",
-      department: "Sports Physical Therapist",
-      description:
-        "Specialist in athlete injury rehabilitation, joint agility training, and dynamic performance therapy.",
-    }
+   {
+  image: "/doctor/dr1.png",
+  name: "Dr. S. Prem Kumar",
+  department: "Senior Most Physiotherapist",
+  description:
+    "Expert in clinical assessment, posture alignment, and comprehensive custom recovery care.",
+},
+{
+  image: "/doctor/dr2.png",
+  name: "Dr. M. Aenneth Nisha",
+  department: "Senior Most Physiotherapist",
+  description:
+    "Specialist in athlete injury rehabilitation, joint agility training, and dynamic performance therapy.",
+}
   ];
 
   const displayDoctors = preview ? doctors.slice(0, 2) : doctors;
@@ -263,7 +263,7 @@ function Doctor({ preview }) {
                 sx={{
                   width: "100%",
                   height: { xs: "250px", sm: "300px", md: "340px" },
-                  objectFit: "cover",
+                  objectFit: "contain",
                   objectPosition: "top",
                   display: "block",
                 }}
