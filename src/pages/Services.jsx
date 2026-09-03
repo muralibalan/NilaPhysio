@@ -20,6 +20,7 @@ const serviceCategories = [
       { name: "Joint Pain Management", img: "/jointpain.png" },
       { name: "Muscle Pain Relief", img: "/musclepain.png" },
       { name: "Sciatica Pain Treatment", img: "/sciaticapain.png" },
+      { name: "Effective Stroke Recovery & Pain Relief Physiotherapy", img: "/stroke2.png" },
     ],
   },
   {

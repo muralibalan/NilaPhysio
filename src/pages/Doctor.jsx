@@ -12,7 +12,7 @@ function Doctor({ preview }) {
 },
 {
   image: "/doctor/dr2.png",
-  name: "Dr. M. Aenneth Nisha",
+  name: "Dr. M. Jennethnisha",
   department: "Senior Most Physiotherapist",
   description:
     "Specialist in athlete injury rehabilitation, joint agility training, and dynamic performance therapy.",
